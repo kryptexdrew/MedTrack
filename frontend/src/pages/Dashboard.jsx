@@ -298,18 +298,17 @@ export default function Dashboard() {
   const monthDisplay = selectedDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
   // "Courses ending soon": active medicines with a future end date, soonest
-  // first. If several finish within the next 7 days, list up to two of them;
-  // otherwise show only the single nearest one.
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // first. Only courses finishing within the next 7 days are shown (max 2).
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
 
-  const upcomingCourses = (medicines || [])
+  const endingCourses = (medicines || [])
     .filter((med) => (med.status || 'active') === 'active')
     .map((med) => {
       const endDate = parseCourseDate(med.endDate);
       if (!endDate) return null;
-      const daysLeft = getDaysUntil(endDate, today);
-      if (daysLeft < 0) return null;
+      const daysLeft = getDaysUntil(endDate, startOfToday);
+      if (daysLeft < 0 || daysLeft > 7) return null;
       return {
         id: String(getEntityId(med) || med.name),
         name: med.name,
@@ -318,10 +317,8 @@ export default function Dashboard() {
       };
     })
     .filter(Boolean)
-    .sort((a, b) => a.daysLeft - b.daysLeft);
-
-  const coursesWithinWeek = upcomingCourses.filter((course) => course.daysLeft <= 7).slice(0, 2);
-  const endingCourses = coursesWithinWeek.length > 0 ? coursesWithinWeek : upcomingCourses.slice(0, 1);
+    .sort((a, b) => a.daysLeft - b.daysLeft)
+    .slice(0, 2);
 
   return (
     <div className="flex min-h-dvh flex-col justify-start bg-[#f8fafc] text-slate-800 antialiased">
@@ -434,12 +431,9 @@ export default function Dashboard() {
                     const isCurrent = isTodaySelected && !!dose.isCurrent;
                     const isSaving = pendingDoses.has(dose.key);
                     return (
-                      <div
-                        key={dose.key}
-                        className={`flex flex-col justify-between gap-3 rounded-2xl border p-4 transition-colors custom-shadow-card sm:flex-row sm:items-center ${isCurrent ? 'border-red-100 bg-red-50/40' : 'border-slate-100 bg-white hover:border-slate-200 hover:bg-slate-50/60'}`}
-                      >
+                      <div key={dose.key} className={`flex flex-col justify-between gap-3 rounded-2xl border p-4 transition-colors custom-shadow-card sm:flex-row sm:items-center ${isCurrent ? 'border-red-100 bg-red-50/40' : 'border-slate-100 bg-white hover:border-slate-200 hover:bg-slate-50/60'}`}>
                         <div className="flex min-w-0 items-center gap-3">
-                          <span className={`w-12 shrink-0 text-xs font-semibold ${isCurrent ? 'font-bold text-red-600' : 'text-slate-800'}`}>{dose.time}</span>
+                          <span className={`w-12 shrink-0 text-xs font-semibold ${isCurrent ? 'text-red-600 font-bold' : 'text-slate-800'}`}>{dose.time}</span>
                           <div className="min-w-0">
                             <h3 className="truncate text-xs font-bold text-slate-900">{dose.name}</h3>
                             <p className="truncate text-[11px] font-normal text-slate-400">{dose.detail}</p>
@@ -447,7 +441,7 @@ export default function Dashboard() {
                         </div>
 
                         {dose.status === 'taken' && (
-                          <div className="shrink-0">
+                          <div>
                             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-100">
                               <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path clipRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fillRule="evenodd"></path></svg>
                               Taken{dose.isLate ? ' (Late)' : ''}
@@ -456,7 +450,7 @@ export default function Dashboard() {
                         )}
 
                         {dose.status === 'skipped' && (
-                          <div className="shrink-0">
+                          <div>
                             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-50 text-amber-700 border border-amber-100">
                               <span className="mr-1 text-xs leading-none">—</span>
                               Skipped
@@ -465,7 +459,7 @@ export default function Dashboard() {
                         )}
 
                         {dose.status === 'missed' && (
-                          <div className="shrink-0">
+                          <div>
                             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-red-50 text-red-700 border border-red-100">
                               <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M6 18 18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -486,14 +480,14 @@ export default function Dashboard() {
                         )}
 
                         {dose.status === 'pending' && !isCurrent && isTodaySelected && (
-                          <div className="flex shrink-0 items-center gap-2">
-                            <button onClick={() => handleTakeDose(dose)} disabled={isSaving} aria-busy={isSaving} className={`min-h-10 rounded border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-600 sm:min-h-0 sm:px-2.5 ${isSaving ? 'opacity-60 cursor-not-allowed' : 'hover:text-red-600 hover:bg-red-50 cursor-pointer'}`} title="Take ahead of time" aria-label="Take dose early">{isSaving ? 'Saving…' : 'Take'}</button>
+                          <div className="flex items-center gap-2">
+                            <button onClick={() => handleTakeDose(dose)} disabled={isSaving} aria-busy={isSaving} className={`min-h-10 rounded border border-slate-200 px-3 py-1 text-[11px] font-medium text-slate-600 sm:min-h-0 sm:px-2.5 ${isSaving ? 'opacity-60 cursor-not-allowed' : 'hover:text-red-600 hover:bg-red-50 cursor-pointer'}`} title="Take ahead of time" aria-label="Take dose early">{isSaving ? 'Saving…' : 'Take'}</button>
                             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-50 text-slate-500 border border-slate-200/60">Upcoming</span>
                           </div>
                         )}
 
                         {dose.status === 'pending' && !isTodaySelected && (
-                          <div className="shrink-0">
+                          <div>
                             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-50 text-slate-500 border border-slate-200/60">Scheduled</span>
                           </div>
                         )}
@@ -571,7 +565,7 @@ export default function Dashboard() {
             </div>
 
             <div className="bg-white rounded-2xl border border-slate-100 p-5 custom-shadow-card">
-              <h3 className="mb-3 text-xs font-bold text-slate-900">Courses ending soon</h3>
+              <h3 className="text-xs font-bold text-slate-900 mb-3">Courses ending soon</h3>
 
               {endingCourses.length === 0 ? (
                 <div className="py-4 text-center text-xs text-slate-400">No courses ending soon</div>

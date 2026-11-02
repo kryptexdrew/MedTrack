@@ -140,7 +140,7 @@ export default function Login() {
         className="flex min-h-dvh w-full flex-col border-slate-100 bg-white px-5 py-7 sm:px-8 sm:py-9 lg:w-[46%] lg:min-w-[480px] lg:max-w-[720px] lg:border-r lg:px-12 lg:shadow-[10px_0_40px_-32px_rgba(15,23,42,0.35)] lg:py-10 xl:px-16"
         data-purpose="login-container"
       >
-        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col">
+        <div className="mx-auto flex w-full max-w-[420px] flex-1 flex-col pt-8">
           {/* Brand */}
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#b91c1c] text-white shadow-[0_8px_20px_-8px_rgba(185,28,28,0.7)]">
@@ -318,7 +318,7 @@ export default function Login() {
         <div aria-hidden="true" className="pointer-events-none absolute -left-16 bottom-0 h-[300px] w-[300px] rounded-full bg-rose-500/20 blur-3xl" />
 
         {/* Copy — centred as one block */}
-        <div className="relative z-10 flex w-full flex-col items-center text-center">
+        <div className="relative z-10 flex w-full flex-col items-center text-center pt-8">
           <h2 className="text-[34px] font-bold leading-[1.08] tracking-tight text-white xl:text-[44px]">
             Track smarter,
             <br />

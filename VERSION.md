@@ -1,104 +1,101 @@
 # MedTrack — Saved Version
 
-## v1.3.1 — Calendar Month Fix + Fully Centered Login Hero (saved 2026-11-01)
+## v1.4.0 — Login Badge Cleanup + Two-Column Doses + Real Course Widget (saved 2026-11-02)
 
 This file records the state of the project at the moment the version was
 archived. There is no git history, so this folder is the reference copy.
 
 ### Snapshot location
 
-- Folder: `C:\Users\PC\Desktop\MedTrack_Backups\v1.3.1_calendar_fix_centered_hero_2026-11-01`
-- Archive: `C:\Users\PC\Desktop\MedTrack_Backups\v1.3.1_calendar_fix_centered_hero_2026-11-01.zip`
+- Folder: `C:\Users\PC\Desktop\MedTrack_Backups\v1.4.0_login_cleanup_dashboard_grid_2026-11-02`
+- Archive: `C:\Users\PC\Desktop\MedTrack_Backups\v1.4.0_login_cleanup_dashboard_grid_2026-11-02.zip`
 
 Excluded from the snapshot (regenerate with `npm install` / `npm run build`):
 `node_modules`, `frontend/dist`, `backend/tmp`, `.git`, logs.
 
 `backend/.env` **is** included because it holds the local Mongo/JWT/Brevo
-settings this version was tested with. Treat it as secret.
+settings this version was tested with. Treat it as secret. It contains the
+working Atlas credential used for the verification below.
 
 ### What changed in this version
 
-#### Dashboard calendar: month navigation no longer skips a month
+#### Login: top badges removed, spacing rebalanced
 
-- Bug: from a 31-day month with the 31st selected (e.g. Oct 31), clicking
-  **Next Month** skipped November and landed on December 1st.
-- Cause: `new Date(2026, 9, 31).setMonth(10)` asks JavaScript for "November
-  31", which overflows into December 1.
-- Fix in `frontend/src/pages/Dashboard.jsx`:
-  - New named `handlePrevMonth` / `handleNextMonth` handlers.
-  - Both call `setDate(1)` **before** `setMonth(±1)`, so overflow cannot occur.
-  - The two arrow buttons now call these handlers instead of inline
-    `setMonth` calls.
-- Behaviour: month navigation selects the 1st of the target month. The
-  **Today** pill still snaps back to the current day.
-- Edge cases verified: Oct 31 → Nov 1, Dec 31 → Jan 1 (year rollover),
-  Jan 31 → Feb 1 (including leap year 2028), Mar/May/Aug 31 → 1st of the next
-  month, Jan 1 → Dec 1 of the prior year, and 13 consecutive clicks walking
-  Nov 2026 → Nov 2027 with no skipped or repeated month.
+- Removed the left-column pill **“System Operational & HIPAA Compliant”**
+  (green pulsing dot) from `frontend/src/pages/Login.jsx`.
+- Removed the right-hero pill **“Next-Gen Patient Adherence Suite”**
+  (rose dot).
+- Left column: the inner content wrapper now has `pt-8`, so the MedTrack logo
+  sits ~72 px below the viewport top on desktop (`lg:py-10` + `32px`) instead
+  of being flush with the edge.
+- Right hero: the copy wrapper now has `pt-8`, and the heading’s old
+  `mt-10 xl:mt-12` was removed so the heading starts at the new top spacing.
+- No other login markup or behaviour changed.
 
-#### Login hero: every element horizontally centered
+#### Dashboard: “Today’s doses” is now a two-column grid
 
-- The badge, heading, and subtitle now share one wrapper:
-  `flex w-full flex-col items-center text-center`.
-- Subtitle: `mx-auto mt-4 mb-2 max-w-lg` (512 px) so it wraps neatly in the
-  middle instead of stretching across the panel.
-- Image frame: unchanged markup/styling; its container now uses `my-8` (plus
-  the existing `flex-1 items-center justify-center`).
-- Caption: a direct `<p>` with `mx-auto max-w-lg text-center`; the old
-  carousel-era `min-h` was removed.
-- `<aside>` gained `lg:items-center` so the whole column is centered.
+- `frontend/src/pages/Dashboard.jsx`: replaced the single white `divide-y`
+  card with a grid wrapper:
+  `grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2`.
+- Each dose is its own card:
+  `flex flex-col justify-between gap-3 rounded-2xl border p-4 ... sm:flex-row sm:items-center`.
+  Time + name/details sit on the left, status badge or actions on the right.
+- The current dose keeps its red tint (`border-red-100 bg-red-50/40`); other
+  cards are white with a subtle hover.
+- The empty state is now a standalone card instead of a row inside the list.
+- All Take / Skip / Taken / Missed / Skipped / Upcoming actions are unchanged.
+- Result: 2 columns on desktop (`md` and up), 1 column on mobile.
 
-#### Carried over unchanged from v1.3.0
+#### Dashboard: “Courses ending soon” now shows real data
 
-- **Medicines "Next Dose" labels**: `frontend/src/utils/nextDose.js`
-  computes the first scheduled dose strictly after now, rolls to tomorrow when
-  today is finished, honours weekday rules and course dates, and formats
-  `"Today, 4:00 PM"` / `"Tomorrow, 8:00 AM"` / `"Mon, 8:00 AM"` /
-  `"Course ended"`. The card refreshes every 30 s and on visibility/focus,
-  shows due-soon doses in red, and passes the raw record to Edit so schedule
-  fields prefill correctly.
-- **Login hero illustration**: `frontend/public/hero-medicine-tracker.svg`
-  (1200 × 900, 4:3) — stylised 3D clock, floating capsules/tablets, and a
-  `MON 08 · DAILY DOSE` card with a completed check. Subtle animations respect
-  `prefers-reduced-motion`. Carousel arrows/dots and related state removed.
-- **Left-column footer**: centered lock row, links, and copyright.
+Helpers added at module scope in `Dashboard.jsx`:
 
-#### Carried over unchanged from v1.2.0
+- `parseCourseDate` — parses `endDate` (`"YYYY-MM-DD"`, optional time suffix)
+  at local midnight.
+- `getDaysUntil` — whole days from the start of today; uses `Math.round` so
+  DST 23 h/25 h days do not shift the count.
+- `formatCourseEndDate` — e.g. `Nov 5, 2026`.
+- `describeDaysLeft` — `Ends today` / `Ends tomorrow` / `Ends in N days`.
 
-- Email dose reminders (`reminderCron`, `doseReminders` sweep, atomic claims,
-  retries, stale-claim recovery), reusable `emailService`, responsive
-  `doseReminder` template, `User`/`DoseLog` reminder fields, preferences
-  endpoint, and schedule re-sync on edit.
-- Auto-miss handling, UTC `scheduledAt`, and reports adherence math from
-  v1.1.0.
-- Backfill and reminder test tooling (`npm run reminders:backfill`,
-  `npm run test:dose-reminder`).
+Computation:
+
+1. Keep medicines whose `status` is `active` (missing status is treated as
+   active).
+2. Parse `endDate`; drop empty/invalid values.
+3. Drop courses whose `endDate` is in the past.
+4. Drop courses more than **7 days** away.
+5. Sort ascending by days remaining and take the **top 2**.
+
+UI:
+
+- Empty result → the existing **“No courses ending soon”** message.
+- Otherwise a short list: bold medicine name, a calendar icon with
+  `Ends: <date>`, and an orange pill for courses ending within 3 days
+  (`Ends today`, `Ends tomorrow`, `Ends in N days`).
+- Strict 7-day window: a course ending in 20 days no longer occupies the card.
 
 ### Verification at save time
 
-- Month navigation logic suite: **16/16 checks passed** — the original bug
-  reproduced (`Oct 31 → Dec 1`), fixed next/previous paths, year and leap-year
-  rollovers, 30-day months, mid-month normalisation, and a 13-step walk across
-  a year boundary.
-- Login centering measured in headless Chrome at 1440 × 900:
-  - Badge, heading, subtitle, image, and caption centers all exactly
-    **1051.2 px**, matching the hero column center (delta 0.0 px).
-  - Subtitle width 512 px; image 454 px wide; 32 px vertical margins.
-  - Repeated at 1366 × 768, 1280 × 720, 1024 × 768, and 1024 × 650: all five
-    elements stay centered, no overlaps. On shorter viewports the page scrolls
-    (the left form already sets that floor) and the caption remains inside the
-    panel rather than being clipped.
-- `frontend`: `npm run build` OK; `npm run lint` exit 0 with 0 errors (only
-  pre-existing warnings).
-- Next-dose logic suite from v1.3.0 still passes **34/34**.
-- API health at save time: `GET /api/health` → `200`, `database: connected`.
-  Protected routes return 401 without a token.
+- `frontend`: `npm run build` OK; `npm run lint` exit 0 with 0 errors.
+- Login measured in headless Chrome at 1440 × 900:
+  - Left pill absent, right pill absent.
+  - Inner content `padding-top` = **32 px**; brand margin 0.
+- Dashboard measured in headless Chrome against a temporary account (removed
+  afterwards):
+  - Desktop 1440 × 900: dose grid `display: grid`, **2 columns**
+    (389.3 px each), `gap-x` 24 px, `gap-y` 16 px; each card
+    `display: flex` with `justify-content: space-between`.
+  - Mobile 390 × 844: **1 column** (358 px), no horizontal overflow.
+  - Widget with courses at +2 d, +5 d, +20 d, −3 d, and no `endDate`:
+    shows **Alpha (+2 d)** with the orange “Ends in 2 days” pill and
+    **Beta (+5 d)**; the +20 d and expired courses are excluded.
+- API health at save time: `GET /api/health` → `200`,
+  `database: connected`.
 
 ### Database state at save time
 
-No migrations or schema changes in v1.3.1. The database is unchanged from
-v1.3.0/v1.2.0 and remains connected; the reminder fields added in v1.2.0 are
-still in place.
+No migrations or schema changes in v1.4.0. The database is unchanged from
+v1.3.1/v1.3.0/v1.2.0 and remains connected.
 
 ### Restore
 
@@ -119,8 +116,13 @@ the same restriction.
 
 ### Version history
 
+- **v1.4.0** (2026-11-02) — Login top badges removed with rebalanced spacing;
+  Dashboard “Today’s doses” converted to a responsive two-column card grid;
+  “Courses ending soon” now lists up to two active courses ending within
+  7 days with date + warning pill. This snapshot.
 - **v1.3.1** (2026-11-01) — Calendar month-navigation skip fixed; login hero
-  badge/heading/subtitle/image/caption fully centered. This snapshot.
+  badge/heading/subtitle/image/caption fully centered. Folder:
+  `v1.3.1_calendar_fix_centered_hero_2026-11-01`.
 - **v1.3.0** (2026-10-31) — Accurate per-medicine next-dose labels, next-dose
   utility + tests, edit-form schedule fix; login carousel removed, illustrated
   medicine-tracker hero, centered footer. Folder:
