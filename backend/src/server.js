@@ -53,7 +53,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!process.env.BREVO_API_KEY || !process.env.BREVO_SENDER_EMAIL) {

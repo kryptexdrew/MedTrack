@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -33,7 +33,7 @@ api.interceptors.response.use(
   (error) => {
     // If backend server is unreachable, we can provide helpful feedback
     if (error.code === 'ERR_NETWORK') {
-      console.warn('Backend server is offline or unreachable. Please start backend on port 5000.');
+      console.warn('Backend server is offline or unreachable. Please start backend on port 8000.');
     }
     const message = error.response?.data?.message || error.message || 'An error occurred';
     return Promise.reject(new Error(message));

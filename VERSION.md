@@ -102,7 +102,7 @@ v1.3.1/v1.3.0/v1.2.0 and remains connected.
 1. Copy the snapshot folder anywhere.
 2. `cd backend && npm install`, then `cd ../frontend && npm install`.
 3. Keep the included `backend/.env` (or recreate it from `.env.example`).
-4. `npm run dev` in `backend` (port 5000) and `frontend` (port 5173).
+4. `npm run dev` in `backend` (port 8000) and `frontend` (port 5173).
 5. On a restored/seeded database run `npm run reminders:backfill` once.
 6. If statuses were ever seeded from an older schema, run
    `npm run migrate:doses` once to normalize them.

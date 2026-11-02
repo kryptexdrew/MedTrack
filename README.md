@@ -61,8 +61,8 @@ npm run dev
 npm start
 ```
 
-- Server will start at: `http://localhost:5000`
-- API Health Check: `http://localhost:5000/api/health`
+- Server will start at: `http://localhost:8000`
+- API Health Check: `http://localhost:8000/api/health`
 - **Plug-and-Play Ready**: If you have not entered a MongoDB Atlas URL yet, the backend automatically runs in **In-Memory Testing Mode** with preloaded test data so you can test all features immediately!
 - **To connect MongoDB Atlas**: Open `backend/.env` and replace `MONGO_URI` with your connection string.
 
