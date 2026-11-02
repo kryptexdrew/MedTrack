@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedTrack - History</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Custom configuration for accurate fonts & colors -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#c91f1f',
+              lightRed: '#fce8e8',
+              badgeRedBg: '#fde8e8',
+              badgeRedText: '#d83a3a',
+              badgeGreenBg: '#dcf3e7',
+              badgeGreenText: '#15803d',
+              badgeYellowBg: '#fef3c7',
+              badgeYellowText: '#b45309'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#f8f9fa] min-h-screen text-slate-800 antialiased font-sans">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-gray-100 shadow-sm" data-purpose="primary-navigation-header">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Brand Logo -->
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 bg-[#c91f1f] rounded-lg flex items-center justify-center text-white shadow-sm" data-purpose="app-logo">
+<!-- Stylized Pill / Capsule Icon -->
+<svg class="w-4 h-4 transform -rotate-45" fill="currentColor" viewbox="0 0 24 24">
+<path d="M4.5 10.5C3.12 9.12 3.12 6.88 4.5 5.5s3.62-1.38 5 0l9 9c1.38 1.38 1.38 3.62 0 5s-3.62 1.38-5 0l-9-9z" opacity="0.4"></path>
+<path d="M9.5 5.5l9 9c1.38 1.38 1.38 3.62 0 5s-3.62 1.38-5 0l-9-9c-1.38-1.38-1.38-3.62 0-5s3.62-1.38 5 0z"></path>
+</svg>
+</div>
+<span class="font-bold text-lg tracking-tight text-gray-900">MedTrack</span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex items-center space-x-1 sm:space-x-3 text-sm font-medium">
+<a class="px-4 py-1.5 text-gray-600 hover:text-gray-900 transition-colors" href="#">Today</a>
+<a class="px-4 py-1.5 text-gray-600 hover:text-gray-900 transition-colors" href="#">Medicines</a>
+<a class="px-4 py-1.5 text-[#c91f1f] bg-[#fdf0f0] rounded-full font-semibold transition-colors" href="#">History</a>
+<a class="px-4 py-1.5 text-gray-600 hover:text-gray-900 transition-colors" href="#">Reports</a>
+</nav>
+<!-- User Profile Avatar -->
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-[#fde8e8] text-[#c91f1f] flex items-center justify-center text-xs font-semibold border border-red-100" data-purpose="user-avatar">
+          JD
+        </div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-4xl mx-auto px-4 sm:px-6 py-8" data-purpose="history-view">
+<!-- Page Header Title & Subtitle -->
+<div class="mb-6">
+<h1 class="text-2xl font-bold tracking-tight text-gray-900">History</h1>
+<p class="text-xs sm:text-sm text-gray-500 mt-1">Every dose you took, skipped or missed</p>
+</div>
+<!-- Filters & Range Selector Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6" data-purpose="history-filters">
+<!-- Status Filter Chips -->
+<div class="flex items-center space-x-2 text-xs font-medium">
+<button class="px-4 py-1.5 rounded-full bg-[#c91f1f] text-white shadow-sm" type="button">All</button>
+<button class="px-4 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-colors" type="button">Taken</button>
+<button class="px-4 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-colors" type="button">Missed</button>
+<button class="px-4 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 transition-colors" type="button">Skipped</button>
+</div>
+<!-- Time Interval Toggle Switch -->
+<div class="flex items-center bg-[#f1f3f5] p-0.5 rounded-lg border border-gray-200/60 self-start sm:self-auto text-xs font-medium">
+<button class="px-3.5 py-1 rounded-md bg-white text-gray-900 shadow-sm font-semibold" type="button">This week</button>
+<button class="px-3.5 py-1 text-gray-500 hover:text-gray-900 transition-colors" type="button">This month</button>
+</div>
+</div>
+<!-- BEGIN: HistoryListContainer -->
+<section class="bg-white rounded-xl shadow-xs border border-gray-200/80 overflow-hidden" data-purpose="history-records-card">
+<!-- ================= Section: Today ================= -->
+<div data-purpose="log-group-today">
+<!-- Date Header -->
+<div class="bg-[#f0f4f8]/70 px-5 py-2.5 flex items-center justify-between border-b border-gray-200/60">
+<span class="text-xs font-semibold text-gray-600">Today · Sat, Oct 17</span>
+<span class="text-xs text-gray-500 font-medium">3 doses</span>
+</div>
+<!-- Dose Record: Vitamin C -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">10:00 AM</span>
+<span class="text-xs font-medium text-gray-800">Vitamin C 500mg</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#fef5e7] text-[#c27803]">
+<span class="font-bold text-xs leading-none">−</span> Skipped
+          </span>
+</div>
+<!-- Dose Record: Paracetamol -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">8:00 AM</span>
+<span class="text-xs font-medium text-gray-800">Paracetamol 500mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+<!-- Dose Record: Amoxicillin -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-200 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">5:00 AM</span>
+<span class="text-xs font-medium text-gray-800">Amoxicillin 250mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+</div>
+<!-- ================= Section: Yesterday ================= -->
+<div data-purpose="log-group-yesterday">
+<!-- Date Header -->
+<div class="bg-[#f0f4f8]/70 px-5 py-2.5 flex items-center justify-between border-b border-gray-200/60">
+<span class="text-xs font-semibold text-gray-600">Yesterday · Fri, Oct 16</span>
+<span class="text-xs text-gray-500 font-medium">5 doses</span>
+</div>
+<!-- Dose Record: Amoxicillin (9:00 PM) -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">9:00 PM</span>
+<span class="text-xs font-medium text-gray-800">Amoxicillin 250mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+<!-- Dose Record: Cough Syrup -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">8:00 PM</span>
+<span class="text-xs font-medium text-gray-800">Cough Syrup 10ml</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+<!-- Dose Record: Amoxicillin (1:00 PM) -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">1:00 PM</span>
+<span class="text-xs font-medium text-gray-800">Amoxicillin 250mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+<!-- Dose Record: Paracetamol -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">8:00 AM</span>
+<span class="text-xs font-medium text-gray-800">Paracetamol 500mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+<!-- Dose Record: Amoxicillin (5:00 AM) - Missed -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-200 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">5:00 AM</span>
+<span class="text-xs font-medium text-gray-800">Amoxicillin 250mg</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#fde8e8] text-[#d83a3a]">
+<span class="font-bold text-xs leading-none">✕</span> Missed
+          </span>
+</div>
+</div>
+<!-- ================= Section: Thu, Oct 15 ================= -->
+<div data-purpose="log-group-oct15">
+<!-- Date Header -->
+<div class="bg-[#f0f4f8]/70 px-5 py-2.5 flex items-center justify-between border-b border-gray-200/60">
+<span class="text-xs font-semibold text-gray-600">Thu, Oct 15</span>
+<span class="text-xs text-gray-500 font-medium">4 doses</span>
+</div>
+<!-- Dose Record: Amoxicillin (9:00 PM) -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">9:00 PM</span>
+<span class="text-xs font-medium text-gray-800">Amoxicillin 250mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+<!-- Dose Record: Amoxicillin (1:00 PM) - Missed -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">1:00 PM</span>
+<span class="text-xs font-medium text-gray-800">Amoxicillin 250mg</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#fde8e8] text-[#d83a3a]">
+<span class="font-bold text-xs leading-none">✕</span> Missed
+          </span>
+</div>
+<!-- Dose Record: Paracetamol (8:00 AM) -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">8:00 AM</span>
+<span class="text-xs font-medium text-gray-800">Paracetamol 500mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+<!-- Dose Record: Amoxicillin (5:00 AM) -->
+<div class="px-5 py-3 flex items-center justify-between hover:bg-gray-50/50 transition-colors">
+<div class="flex items-center space-x-8 sm:space-x-12">
+<span class="text-xs font-semibold text-gray-900 w-16">5:00 AM</span>
+<span class="text-xs font-medium text-gray-800">Amoxicillin 250mg</span>
+</div>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#1e8349]">
+<span>✓</span> Taken
+          </span>
+</div>
+</div>
+</section>
+<!-- END: HistoryListContainer -->
+</main>
+<!-- END: MainContent -->
+</body></html>

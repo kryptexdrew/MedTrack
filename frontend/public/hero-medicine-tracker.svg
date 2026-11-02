@@ -1,0 +1,269 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">Medicine tracker illustration</title>
+  <desc id="heroDesc">A stylised 3D clock surrounded by floating capsules and tablets, beside a medication schedule card with a completed-dose checkmark.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1120" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9F7" />
+      <stop offset="0.5" stop-color="#FFEFEA" />
+      <stop offset="1" stop-color="#FFE1DB" />
+    </linearGradient>
+
+    <radialGradient id="glowRose" cx="0" cy="0" r="1" gradientTransform="translate(300 160) rotate(35) scale(340)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FECDD3" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#FECDD3" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="glowCream" cx="0" cy="0" r="1" gradientTransform="translate(990 760) rotate(-140) scale(320)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="clockGlow" cx="0" cy="0" r="1" gradientTransform="translate(600 430) scale(340)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDECEC" stop-opacity="0.95" />
+      <stop offset="0.62" stop-color="#FECDD3" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#FECDD3" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="rim" x1="392" y1="196" x2="812" y2="684" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F87171" />
+      <stop offset="0.45" stop-color="#DC2626" />
+      <stop offset="1" stop-color="#7F1D1D" />
+    </linearGradient>
+
+    <linearGradient id="face" x1="430" y1="248" x2="772" y2="618" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#FFF0EE" />
+    </linearGradient>
+
+    <linearGradient id="hand" x1="600" y1="290" x2="600" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B91C1C" />
+      <stop offset="1" stop-color="#7F1D1D" />
+    </linearGradient>
+
+    <linearGradient id="capWhite" x1="0" y1="0" x2="0" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#FFE4E6" />
+    </linearGradient>
+
+    <linearGradient id="capRed" x1="0" y1="0" x2="0" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB7185" />
+      <stop offset="0.55" stop-color="#E11D48" />
+      <stop offset="1" stop-color="#9F1239" />
+    </linearGradient>
+
+    <linearGradient id="tablet" x1="0" y1="0" x2="0" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#FFE4E6" />
+    </linearGradient>
+
+    <linearGradient id="tabletRose" x1="0" y1="0" x2="0" y2="68" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDA4AF" />
+      <stop offset="1" stop-color="#BE123C" />
+    </linearGradient>
+
+    <linearGradient id="card" x1="845" y1="555" x2="1090" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#FFF6F6" />
+    </linearGradient>
+
+    <linearGradient id="cardHead" x1="845" y1="555" x2="1090" y2="613" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F05252" />
+      <stop offset="1" stop-color="#991B1B" />
+    </linearGradient>
+
+    <linearGradient id="check" x1="1018" y1="685" x2="1072" y2="739" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34D399" />
+      <stop offset="1" stop-color="#059669" />
+    </linearGradient>
+
+    <filter id="soft" x="-45%" y="-45%" width="190%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#9F1239" flood-opacity="0.18" />
+    </filter>
+
+    <filter id="softSmall" x="-60%" y="-60%" width="220%" height="230%">
+      <feDropShadow dx="0" dy="10" stdDeviation="11" flood-color="#9F1239" flood-opacity="0.18" />
+    </filter>
+
+    <filter id="blurSoft" x="-60%" y="-160%" width="220%" height="420%">
+      <feGaussianBlur stdDeviation="22" />
+    </filter>
+
+    <clipPath id="cardClip">
+      <rect x="845" y="555" width="245" height="205" rx="26" />
+    </clipPath>
+
+    <style>
+      .float-a { animation: float-a 6.5s ease-in-out infinite; }
+      .float-b { animation: float-a 8s ease-in-out -2.4s infinite; }
+      .float-c { animation: float-a 9.5s ease-in-out -4.6s infinite; }
+      .breathe { animation: breathe 6s ease-in-out infinite; }
+
+      @keyframes float-a {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-14px); }
+      }
+
+      @keyframes breathe {
+        0%, 100% { opacity: 0.55; }
+        50% { opacity: 0.95; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .float-a, .float-b, .float-c, .breathe { animation: none; }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="900" fill="url(#bg)" />
+  <rect width="1200" height="900" fill="url(#glowRose)" />
+  <rect width="1200" height="900" fill="url(#glowCream)" />
+
+  <!-- Soft bokeh -->
+  <circle cx="1052" cy="118" r="74" fill="#FFFFFF" fill-opacity="0.34" />
+  <circle cx="86" cy="304" r="42" fill="#FFFFFF" fill-opacity="0.42" />
+  <circle cx="1122" cy="612" r="26" fill="#FDA4AF" fill-opacity="0.5" />
+  <circle cx="498" cy="826" r="18" fill="#FB7185" fill-opacity="0.35" />
+  <circle cx="712" cy="132" r="12" fill="#FB7185" fill-opacity="0.3" />
+
+  <!-- Clock halo -->
+  <circle class="breathe" cx="600" cy="430" r="340" fill="url(#clockGlow)" />
+
+  <!-- Ground shadow -->
+  <ellipse cx="600" cy="704" rx="212" ry="26" fill="#BE123C" fill-opacity="0.16" filter="url(#blurSoft)" />
+
+  <!-- Orbit dashes -->
+  <circle cx="600" cy="430" r="292" stroke="#FB7185" stroke-opacity="0.32" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 15" />
+
+  <!-- Clock -->
+  <g filter="url(#soft)">
+    <circle cx="600" cy="430" r="252" fill="url(#rim)" />
+    <circle cx="600" cy="430" r="252" stroke="#FECDD3" stroke-opacity="0.45" stroke-width="3" />
+    <circle cx="600" cy="430" r="242" stroke="#FFFFFF" stroke-opacity="0.26" stroke-width="3" />
+    <circle cx="600" cy="430" r="226" fill="#FFF3F1" />
+    <circle cx="600" cy="430" r="208" fill="url(#face)" stroke="#FECDD3" stroke-width="2" />
+  </g>
+
+  <!-- Tick marks -->
+  <g transform="translate(600 430)" stroke="#9F1239" stroke-linecap="round">
+    <line y1="-190" y2="-166" stroke-opacity="0.62" stroke-width="7" transform="rotate(0)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(30)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(60)" />
+    <line y1="-190" y2="-166" stroke-opacity="0.62" stroke-width="7" transform="rotate(90)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(120)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(150)" />
+    <line y1="-190" y2="-166" stroke-opacity="0.62" stroke-width="7" transform="rotate(180)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(210)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(240)" />
+    <line y1="-190" y2="-166" stroke-opacity="0.62" stroke-width="7" transform="rotate(270)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(300)" />
+    <line y1="-188" y2="-172" stroke-opacity="0.32" stroke-width="5" transform="rotate(330)" />
+  </g>
+
+  <!-- Numerals -->
+  <g fill="#9F1239" fill-opacity="0.55" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" text-anchor="middle">
+    <text x="600" y="296">12</text>
+    <text x="748" y="445">3</text>
+    <text x="600" y="596">6</text>
+    <text x="452" y="445">9</text>
+  </g>
+
+  <!-- Hands: 8:00 -->
+  <g stroke-linecap="round">
+    <line x1="600" y1="430" x2="517" y2="478" stroke="url(#hand)" stroke-width="24" />
+    <line x1="600" y1="430" x2="600" y2="302" stroke="url(#hand)" stroke-width="18" />
+    <line x1="600" y1="430" x2="584" y2="451" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="5" />
+  </g>
+
+  <!-- Dose marker at 8 o'clock -->
+  <g transform="translate(394 549)">
+    <circle r="15" fill="#FFFFFF" fill-opacity="0.92" />
+    <circle r="8.5" fill="#DC2626" />
+  </g>
+
+  <!-- Hub -->
+  <circle cx="600" cy="430" r="19" fill="#FFFFFF" stroke="#BE123C" stroke-width="6" />
+  <circle cx="600" cy="430" r="7" fill="#BE123C" />
+  <circle cx="594" cy="424" r="3" fill="#FFFFFF" fill-opacity="0.85" />
+
+  <!-- Capsule: top left -->
+  <g transform="translate(142 150) rotate(-24)">
+    <g class="float-a" filter="url(#soft)">
+      <rect width="172" height="66" rx="33" fill="url(#capWhite)" />
+      <path d="M86 0h53a33 33 0 0 1 0 66H86V0Z" fill="url(#capRed)" />
+      <rect x="84" y="4" width="4" height="58" rx="2" fill="#FFFFFF" fill-opacity="0.55" />
+      <rect x="20" y="12" width="118" height="15" rx="7.5" fill="#FFFFFF" fill-opacity="0.5" />
+      <rect x="6" y="6" width="160" height="54" rx="27" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Capsule: right -->
+  <g transform="translate(978 272) rotate(22)">
+    <g class="float-b" filter="url(#softSmall)">
+      <rect width="148" height="58" rx="29" fill="url(#capRed)" />
+      <path d="M0 0h42v58H0V0Z" fill="url(#capWhite)" />
+      <rect x="40" y="4" width="4" height="50" rx="2" fill="#FFFFFF" fill-opacity="0.45" />
+      <rect x="58" y="11" width="70" height="13" rx="6.5" fill="#FFFFFF" fill-opacity="0.3" />
+      <rect x="5" y="5" width="138" height="48" rx="24" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Capsule: lower left -->
+  <g transform="translate(72 596) rotate(58)">
+    <g class="float-c" filter="url(#softSmall)">
+      <rect width="98" height="40" rx="20" fill="url(#capWhite)" />
+      <path d="M49 0h29a20 20 0 0 1 0 40H49V0Z" fill="url(#capRed)" />
+      <rect x="47" y="3" width="3" height="34" rx="1.5" fill="#FFFFFF" fill-opacity="0.55" />
+      <rect x="12" y="7" width="62" height="9" rx="4.5" fill="#FFFFFF" fill-opacity="0.5" />
+    </g>
+  </g>
+
+  <!-- Tablet: bottom left -->
+  <g transform="translate(258 744)">
+    <g class="float-b" filter="url(#soft)">
+      <circle r="48" fill="url(#tablet)" />
+      <circle r="48" stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="2" />
+      <path d="M-22 0h44" stroke="#FDA4AF" stroke-width="4" stroke-linecap="round" stroke-opacity="0.85" />
+    </g>
+  </g>
+
+  <!-- Tablet: top right -->
+  <g transform="translate(944 178)">
+    <g class="float-c" filter="url(#softSmall)">
+      <circle r="36" fill="url(#tabletRose)" />
+      <circle r="36" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2" />
+      <ellipse cx="-11" cy="-13" rx="14" ry="8" fill="#FFFFFF" fill-opacity="0.35" transform="rotate(-28 -11 -13)" />
+    </g>
+  </g>
+
+  <!-- Small rose tablet -->
+  <g transform="translate(172 392)">
+    <g class="float-a" filter="url(#softSmall)">
+      <circle r="22" fill="url(#tabletRose)" />
+      <circle r="22" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Small pill near schedule card -->
+  <g transform="translate(776 806)">
+    <g class="float-b" filter="url(#softSmall)">
+      <circle r="17" fill="url(#tablet)" />
+      <circle r="17" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Schedule card -->
+  <g transform="rotate(7 967 657)">
+    <rect x="845" y="555" width="245" height="205" rx="26" fill="url(#card)" stroke="#FECDD3" stroke-width="2" filter="url(#soft)" />
+    <g clip-path="url(#cardClip)">
+      <rect x="845" y="555" width="245" height="58" fill="url(#cardHead)" />
+      <rect x="845" y="555" width="245" height="26" fill="#FFFFFF" fill-opacity="0.08" />
+    </g>
+    <text x="884" y="593" fill="#FFF5F5" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="2.6">MON</text>
+    <text x="880" y="694" fill="#9F1239" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="70" font-weight="800" letter-spacing="-1">08</text>
+    <text x="884" y="724" fill="#FB7185" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="2">DAILY DOSE</text>
+    <circle cx="1045" cy="712" r="27" fill="url(#check)" />
+    <path d="M1033 712l8 9 16-18" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+</svg>

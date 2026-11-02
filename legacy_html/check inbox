@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedTrack - Check Your Inbox</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: CustomStyles -->
+<style data-purpose="custom-typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+<style data-purpose="layout-tweaks">
+    .card-shadow {
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    }
+  </style>
+<!-- END: CustomStyles -->
+</head>
+<body class="bg-[#f8fafc] text-slate-800 min-h-screen flex flex-col justify-between p-4 sm:p-6 md:p-8 antialiased selection:bg-red-100 selection:text-red-700">
+<!-- BEGIN: TopBar -->
+<header class="w-full max-w-7xl mx-auto flex items-center justify-between" data-purpose="system-status-bar">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-600">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>System Operational &amp; HIPAA Compliant</span>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: MainContent -->
+<main class="w-full flex-grow flex items-center justify-center my-6">
+<div class="w-full max-w-[540px] bg-white rounded-2xl p-6 sm:p-10 card-shadow border border-slate-100 relative" data-purpose="verification-card">
+<!-- Top Pill Icon with Badge -->
+<div class="flex justify-center mb-5">
+<div class="relative w-16 h-16 rounded-full bg-red-50 flex items-center justify-center">
+<svg class="w-7 h-7 text-red-500 transform -rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path class="hidden" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" stroke-linecap="round" stroke-linejoin="round"></path>
+<!-- Pill Capsule Icon -->
+<path d="M10.5 6h3a4.5 4.5 0 014.5 4.5v0a4.5 4.5 0 01-4.5 4.5h-3a4.5 4.5 0 01-4.5-4.5v0A4.5 4.5 0 0110.5 6z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 6v9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<!-- Status dot on icon edge -->
+<span class="absolute top-1 right-1 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"></span>
+</div>
+</div>
+<!-- Card Titles -->
+<div class="text-center mb-6">
+<p class="text-[11px] font-bold tracking-wider text-red-500 uppercase mb-1">MedTrack Access</p>
+<h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Check your inbox</h1>
+<p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-sm mx-auto leading-relaxed">
+          We've dispatched an authenticated reset key and recovery link directly to:
+        </p>
+</div>
+<!-- Target Destination Container -->
+<div class="bg-[#f8fafc] border border-slate-200/80 rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 mb-4" data-purpose="email-display">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0 text-red-500">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="min-w-0">
+<span class="block text-[10px] font-bold tracking-wider text-slate-400 uppercase leading-tight">Target Destination</span>
+<span class="text-xs sm:text-sm font-semibold text-slate-800 truncate block">alex.johnson@example.com</span>
+</div>
+</div>
+<button class="inline-flex items-center gap-1 text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-200 bg-white hover:bg-slate-50 px-2.5 py-1.5 rounded-lg shadow-sm transition-colors flex-shrink-0" data-purpose="edit-destination-btn" type="button">
+<span>Edit</span>
+<svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Action Button -->
+<a class="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm shadow-red-200 transition-colors text-sm mb-3.5" data-purpose="primary-cta" href="mailto:alex.johnson@example.com">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Open Email Client</span>
+</a>
+<!-- Resend Status Row -->
+<div class="bg-[#f8fafc] border border-slate-200/80 rounded-xl px-4 py-2.5 flex items-center justify-between mb-5" data-purpose="resend-countdown-bar">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Available to resend in <strong class="text-slate-800 font-semibold">48s</strong></span>
+</div>
+<button class="text-xs font-semibold text-slate-400 bg-slate-100 cursor-not-allowed px-3 py-1.5 rounded-lg" data-purpose="resend-link-btn" disabled="" type="button">
+          Resend Link
+        </button>
+</div>
+<!-- Security Protocol Box -->
+<div class="bg-red-50/60 border border-red-100 rounded-xl p-4 mb-6" data-purpose="security-protocol-notice">
+<div class="flex items-center gap-1.5 mb-1 text-red-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-bold tracking-wider uppercase">Security Protocol</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed pl-5">
+          The encrypted reset link expires in <strong class="text-slate-800 font-semibold">15 minutes</strong> and can only be used once. If your message does not arrive promptly, check your spam or institutional filtering inbox.
+        </p>
+</div>
+<!-- Next Steps (Numbered List) -->
+<ol class="space-y-3.5 mb-8 text-xs text-slate-600" data-purpose="instructions-stepper">
+<li class="flex items-start gap-3">
+<span class="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-[11px] font-bold text-red-500">1</span>
+<span class="leading-relaxed">Follow the single-use URL enclosed in the verification dispatch.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-[11px] font-bold text-red-500">2</span>
+<span class="leading-relaxed">Establish a new HIPAA–compliant credential to immediately restore medication alerts.</span>
+</li>
+</ol>
+<div class="border-t border-slate-100 pt-5 text-center space-y-2">
+<div>
+<a class="inline-flex items-center gap-1.5 text-xs font-semibold text-red-600 hover:text-red-700 transition-colors" href="#">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Return to Log in</span>
+</a>
+</div>
+<p class="text-[11px] text-slate-500">
+          Need caregiver assistance? <a class="text-slate-700 underline font-medium hover:text-slate-900 transition-colors" href="#">Contact Clinical Support</a>
+</p>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="w-full max-w-7xl mx-auto flex flex-col items-center justify-center gap-2 pt-2 pb-1" data-purpose="page-footer">
+<!-- Security Badge Pill -->
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200/90 rounded-full shadow-sm text-[11px] text-slate-500">
+<span class="text-red-500 flex items-center gap-1 font-medium">
+<svg class="w-3 h-3 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        End-to-End Encrypted Medication Profile
+      </span>
+<span class="text-slate-300">•</span>
+<a class="hover:text-slate-800 transition-colors" href="#">Privacy Policy</a>
+<span class="text-slate-300">•</span>
+<a class="hover:text-slate-800 transition-colors" href="#">Terms of Care</a>
+</div>
+<!-- Copyright -->
+<p class="text-[10px] text-slate-400 font-normal">
+      © 2025 MedTrack Healthcare Systems, Inc. All rights reserved.
+    </p>
+</footer>
+<!-- END: MainFooter -->
+</body></html>

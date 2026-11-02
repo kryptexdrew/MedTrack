@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedTrack - My Medicines</title>
+<!-- Tailwind CSS CDN with forms and container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration for custom theme shades -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            medred: {
+              50: '#FDF2F2',
+              100: '#FDE8E8',
+              200: '#FBD5D5',
+              500: '#E02424',
+              600: '#C81E1E',
+              700: '#B51A1A'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Typography and subtle interactions -->
+<style data-purpose="custom-enhancements">
+    body {
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 font-sans min-h-screen antialiased selection:bg-medred-100 selection:text-medred-700">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-slate-100 sticky top-0 z-30" data-purpose="top-navigation">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<!-- Logo and App Name -->
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded-lg bg-medred-600 flex items-center justify-center text-white shadow-sm">
+<!-- Pill Icon -->
+<svg class="w-4 h-4 transform -rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M19.5 12c0-3.866-3.134-7-7-7a7 7 0 000 14c3.866 0 7-3.134 7-7zM8.5 8.5l7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900">MedTrack</span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex items-center space-x-1 sm:space-x-3 text-sm font-medium" data-purpose="main-nav-links">
+<a class="px-3.5 py-1.5 text-slate-500 hover:text-slate-800 transition-colors" href="#">Today</a>
+<a class="px-4 py-1.5 rounded-full bg-medred-50 text-medred-600 font-semibold transition-colors" href="#">Medicines</a>
+<a class="px-3.5 py-1.5 text-slate-500 hover:text-slate-800 transition-colors" href="#">History</a>
+<a class="px-3.5 py-1.5 text-slate-500 hover:text-slate-800 transition-colors" href="#">Reports</a>
+</nav>
+<!-- User Profile Avatar Badge -->
+<div class="flex items-center" data-purpose="user-profile">
+<div class="w-9 h-9 rounded-full bg-medred-50 text-medred-700 font-semibold text-xs flex items-center justify-center border border-medred-100">
+          JD
+        </div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-7" data-purpose="page-content">
+<!-- BEGIN: PageTitleArea -->
+<div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight">My medicines</h1>
+<p class="text-sm text-slate-500 mt-0.5">4 active medicines</p>
+</div>
+<!-- Add Medicine Button CTA -->
+<button class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-medred-600 hover:bg-medred-700 active:bg-medred-700 text-white font-medium text-sm shadow-sm transition-colors cursor-pointer self-start" type="button">
+<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        Add medicine
+      </button>
+</div>
+<!-- END: PageTitleArea -->
+<!-- BEGIN: StatusTabs -->
+<!-- Segmented Filter for Active / Ended -->
+<div class="inline-flex p-1 rounded-full bg-slate-100 text-xs font-semibold" data-purpose="status-filters">
+<button class="px-4 py-1 rounded-full bg-white text-slate-800 shadow-xs border border-slate-200/60 transition-all cursor-pointer" type="button">
+        Active
+      </button>
+<button class="px-4 py-1 rounded-full text-slate-500 hover:text-slate-800 transition-all cursor-pointer" type="button">
+        Ended
+      </button>
+</div>
+<!-- END: StatusTabs -->
+<!-- BEGIN: CategoryCardsSection -->
+<section aria-labelledby="browse-by-type-heading" class="space-y-3.5" data-purpose="browse-by-type">
+<div class="flex items-center justify-between">
+<h2 class="text-sm font-semibold text-slate-900" id="browse-by-type-heading">Browse by type</h2>
+<span class="text-xs text-slate-400 font-medium">Showing all 4 medicines</span>
+</div>
+<!-- Type Categories Horizontal Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+<!-- Category Card 1: All types (Active) -->
+<div class="bg-red-50/60 border border-red-200 rounded-xl p-3.5 flex flex-col items-start cursor-pointer transition shadow-2xs">
+<div class="w-8 h-8 rounded-lg bg-medred-600 text-white flex items-center justify-center mb-2.5">
+<!-- 4 Dots / Grid Icon -->
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+<rect height="5" rx="1.5" width="5" x="3" y="3"></rect>
+<rect height="5" rx="1.5" width="5" x="12" y="3"></rect>
+<rect height="5" rx="1.5" width="5" x="3" y="12"></rect>
+<rect height="5" rx="1.5" width="5" x="12" y="12"></rect>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-900">All types</span>
+<span class="text-[11px] text-slate-400 mt-0.5 font-medium">4 medicines</span>
+</div>
+<!-- Category Card 2: Tablets -->
+<div class="bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl p-3.5 flex flex-col items-start cursor-pointer transition">
+<div class="w-8 h-8 rounded-full bg-red-50 text-medred-600 flex items-center justify-center mb-2.5">
+<!-- Tablet Icon (circle with line) -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<line x1="6" x2="18" y1="12" y2="12"></line>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-900">Tablets</span>
+<span class="text-[11px] text-slate-400 mt-0.5 font-medium">2 medicines</span>
+</div>
+<!-- Category Card 3: Capsules -->
+<div class="bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl p-3.5 flex flex-col items-start cursor-pointer transition">
+<div class="w-8 h-8 rounded-full bg-red-50 text-medred-600 flex items-center justify-center mb-2.5">
+<!-- Capsule Icon -->
+<svg class="w-4 h-4 transform -rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="8" rx="4" width="14" x="5" y="8"></rect>
+<line x1="12" x2="12" y1="8" y2="16"></line>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-900">Capsules</span>
+<span class="text-[11px] text-slate-400 mt-0.5 font-medium">1 medicine</span>
+</div>
+<!-- Category Card 4: Syrups -->
+<div class="bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl p-3.5 flex flex-col items-start cursor-pointer transition">
+<div class="w-8 h-8 rounded-full bg-red-50 text-medred-600 flex items-center justify-center mb-2.5">
+<!-- Syrup Bottle Icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10 3h4m-3 0v3m2 0V3m-4 3h6a2 2 0 012 2v10a3 3 0 01-3 3H10a3 3 0 01-3-3V8a2 2 0 012-2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-900">Syrups</span>
+<span class="text-[11px] text-slate-400 mt-0.5 font-medium">1 medicine</span>
+</div>
+<!-- Category Card 5: Injections -->
+<div class="bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl p-3.5 flex flex-col items-start cursor-pointer transition">
+<div class="w-8 h-8 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center mb-2.5">
+<!-- Syringe Icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 5l-2-2m-1 3l2 2m-4.5 1.5l1.5-1.5a2 2 0 000-2.83l-.67-.67a2 2 0 00-2.83 0L11 6m3.5 4.5L6 19l-3 1 1-3 8.5-8.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-400">Injections</span>
+<span class="text-[11px] text-slate-400 mt-0.5 font-medium">None yet</span>
+</div>
+<!-- Category Card 6: Topical -->
+<div class="bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl p-3.5 flex flex-col items-start cursor-pointer transition">
+<div class="w-8 h-8 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center mb-2.5">
+<!-- Tube/Ointment Icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="15" rx="2" width="10" x="7" y="5"></rect>
+<line x1="9" x2="15" y1="9" y2="9"></line>
+<line x1="10" x2="14" y1="3" y2="3"></line>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-400">Topical</span>
+<span class="text-[11px] text-slate-400 mt-0.5 font-medium">None yet</span>
+</div>
+</div>
+</section>
+<!-- END: CategoryCardsSection -->
+<!-- BEGIN: MedicineList -->
+<section aria-label="Medicine cards list" class="space-y-3" data-purpose="medicine-items-list">
+<!-- Item 1: Paracetamol 500mg -->
+<article class="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 transition-shadow shadow-xs">
+<!-- Left: Icon & Details -->
+<div class="flex items-start space-x-4">
+<div class="w-10 h-10 rounded-xl bg-red-50 text-medred-600 flex items-center justify-center shrink-0 mt-0.5">
+<!-- Pill/Capsule symbol -->
+<svg class="w-5 h-5 transform -rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M19.5 12c0-3.866-3.134-7-7-7a7 7 0 000 14c3.866 0 7-3.134 7-7zM8.5 8.5l7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<h3 class="font-bold text-slate-900 text-sm sm:text-base">Paracetamol 500mg</h3>
+<span class="text-[11px] font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">Tablet</span>
+</div>
+<p class="text-xs text-slate-600 font-medium mt-1">Once daily · 8:00 AM</p>
+<p class="text-xs text-slate-400 mt-0.5">Since Oct 1 · No end date · Take after meals</p>
+</div>
+</div>
+<!-- Right: Next Dose & Action Controls -->
+<div class="flex items-center justify-between md:justify-end space-x-6 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div class="text-left md:text-right">
+<span class="block text-[10px] font-semibold text-slate-400 tracking-wider">NEXT DOSE</span>
+<span class="text-xs font-bold text-slate-800">Tomorrow, 8:00 AM</span>
+</div>
+<div class="flex items-center space-x-2">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 active:bg-slate-100 transition-colors" type="button">Edit</button>
+<button class="px-3 py-1.5 text-xs font-medium text-medred-600 hover:text-medred-700 hover:bg-red-50 rounded-lg transition-colors" type="button">Delete</button>
+</div>
+</div>
+</article>
+<!-- Item 2: Amoxicillin 250mg -->
+<article class="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 transition-shadow shadow-xs">
+<!-- Left: Icon & Details -->
+<div class="flex items-start space-x-4">
+<div class="w-10 h-10 rounded-xl bg-red-50 text-medred-600 flex items-center justify-center shrink-0 mt-0.5">
+<svg class="w-5 h-5 transform -rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M19.5 12c0-3.866-3.134-7-7-7a7 7 0 000 14c3.866 0 7-3.134 7-7zM8.5 8.5l7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<h3 class="font-bold text-slate-900 text-sm sm:text-base">Amoxicillin 250mg</h3>
+<span class="text-[11px] font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">Capsule</span>
+</div>
+<p class="text-xs text-slate-600 font-medium mt-1">Every 8 hours · 5:00 AM, 1:00 PM, 9:00 PM</p>
+<p class="text-xs text-slate-400 mt-0.5">Oct 12 – Oct 19 · Take with water</p>
+</div>
+</div>
+<!-- Right: Next Dose & Action Controls -->
+<div class="flex items-center justify-between md:justify-end space-x-6 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div class="text-left md:text-right">
+<span class="block text-[10px] font-semibold text-slate-400 tracking-wider">NEXT DOSE</span>
+<span class="text-xs font-bold text-slate-800">Today, 1:00 PM</span>
+</div>
+<div class="flex items-center space-x-2">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 active:bg-slate-100 transition-colors" type="button">Edit</button>
+<button class="px-3 py-1.5 text-xs font-medium text-medred-600 hover:text-medred-700 hover:bg-red-50 rounded-lg transition-colors" type="button">Delete</button>
+</div>
+</div>
+</article>
+<!-- Item 3: Cough Syrup 10ml -->
+<article class="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 transition-shadow shadow-xs">
+<!-- Left: Icon & Details -->
+<div class="flex items-start space-x-4">
+<div class="w-10 h-10 rounded-xl bg-red-50 text-medred-600 flex items-center justify-center shrink-0 mt-0.5">
+<svg class="w-5 h-5 transform -rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M19.5 12c0-3.866-3.134-7-7-7a7 7 0 000 14c3.866 0 7-3.134 7-7zM8.5 8.5l7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<h3 class="font-bold text-slate-900 text-sm sm:text-base">Cough Syrup 10ml</h3>
+<span class="text-[11px] font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">Syrup</span>
+</div>
+<p class="text-xs text-slate-600 font-medium mt-1">Once daily · 8:00 PM</p>
+<p class="text-xs text-slate-400 mt-0.5">Oct 15 – Oct 22</p>
+</div>
+</div>
+<!-- Right: Next Dose & Action Controls -->
+<div class="flex items-center justify-between md:justify-end space-x-6 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div class="text-left md:text-right">
+<span class="block text-[10px] font-semibold text-slate-400 tracking-wider">NEXT DOSE</span>
+<span class="text-xs font-bold text-slate-800">Today, 8:00 PM</span>
+</div>
+<div class="flex items-center space-x-2">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 active:bg-slate-100 transition-colors" type="button">Edit</button>
+<button class="px-3 py-1.5 text-xs font-medium text-medred-600 hover:text-medred-700 hover:bg-red-50 rounded-lg transition-colors" type="button">Delete</button>
+</div>
+</div>
+</article>
+<!-- Item 4: Vitamin C 500mg -->
+<article class="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 transition-shadow shadow-xs">
+<!-- Left: Icon & Details -->
+<div class="flex items-start space-x-4">
+<div class="w-10 h-10 rounded-xl bg-red-50 text-medred-600 flex items-center justify-center shrink-0 mt-0.5">
+<svg class="w-5 h-5 transform -rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M19.5 12c0-3.866-3.134-7-7-7a7 7 0 000 14c3.866 0 7-3.134 7-7zM8.5 8.5l7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<h3 class="font-bold text-slate-900 text-sm sm:text-base">Vitamin C 500mg</h3>
+<span class="text-[11px] font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">Tablet</span>
+</div>
+<p class="text-xs text-slate-600 font-medium mt-1">Specific days · Sat, Sun · 10:00 AM</p>
+<p class="text-xs text-slate-400 mt-0.5">Since Oct 3 · No end date</p>
+</div>
+</div>
+<!-- Right: Next Dose & Action Controls -->
+<div class="flex items-center justify-between md:justify-end space-x-6 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
+<div class="text-left md:text-right">
+<span class="block text-[10px] font-semibold text-slate-400 tracking-wider">NEXT DOSE</span>
+<span class="text-xs font-bold text-slate-800">Tomorrow, 10:00 AM</span>
+</div>
+<div class="flex items-center space-x-2">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 active:bg-slate-100 transition-colors" type="button">Edit</button>
+<button class="px-3 py-1.5 text-xs font-medium text-medred-600 hover:text-medred-700 hover:bg-red-50 rounded-lg transition-colors" type="button">Delete</button>
+</div>
+</div>
+</article>
+</section>
+<!-- END: MedicineList -->
+</main>
+<!-- END: MainContent -->
+</body></html>

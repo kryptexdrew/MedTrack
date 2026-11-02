@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F8FAFC] text-slate-800 antialiased;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Remove the grey tap flash and the 300ms delay on touch devices. */
+  button,
+  a,
+  [role='button'],
+  input[type='button'],
+  input[type='submit'] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+.card-shadow {
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.05), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+}
+
+.custom-shadow-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  text-align: center;
+}
+
+/* Utility for elements pinned to the bottom of a notched phone screen. */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/*
+ * iOS Safari zooms the whole page when a focused field's font size is below
+ * 16px. Keep form controls at 16px on phones only, so desktop typography is
+ * unchanged.
+ *
+ * Deliberately outside @layer base: Tailwind utilities such as `text-xs` would
+ * otherwise win the cascade, and the zoom would still happen.
+ */
+@media (max-width: 767px) {
+  input:not([type='checkbox']):not([type='radio']),
+  select:not([disabled]),
+  textarea:not([disabled]) {
+    font-size: 16px;
+  }
+}

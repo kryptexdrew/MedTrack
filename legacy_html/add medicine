@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedTrack - Add Medicine</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              200: '#fecaca',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Brand Logo -->
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded-lg bg-brand-700 flex items-center justify-center text-white shadow-sm">
+<svg class="w-5 h-5 -rotate-45" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+<path d="m8.5 8.5 7 7"></path>
+</svg>
+</div>
+<span class="text-xl font-bold tracking-tight text-brand-700">MedTrack</span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex items-center space-x-1 sm:space-x-3 text-sm font-medium">
+<a class="px-3.5 py-1.5 text-slate-600 hover:text-slate-900 transition-colors" href="#">Today</a>
+<a class="px-4 py-1.5 bg-brand-50 text-brand-700 rounded-full font-semibold transition-colors" href="#">Medicines</a>
+<a class="px-3.5 py-1.5 text-slate-600 hover:text-slate-900 transition-colors" href="#">History</a>
+<a class="px-3.5 py-1.5 text-slate-600 hover:text-slate-900 transition-colors" href="#">Reports</a>
+</nav>
+<!-- User Profile Badge -->
+<div class="flex items-center">
+<div class="w-9 h-9 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-medium text-xs border border-brand-100">
+          JD
+        </div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-2xl mx-auto px-4 py-8">
+<!-- Top Navigation & Heading -->
+<div class="mb-6">
+<a class="inline-flex items-center text-xs font-semibold text-slate-500 hover:text-slate-800 transition mb-3" href="#">
+<svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+        Back to medicines
+      </a>
+<h1 class="text-2xl font-bold text-slate-900">Add medicine</h1>
+</div>
+<form class="space-y-6">
+<!-- BEGIN: Section 1 - Medicine Details -->
+<section class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm" data-purpose="medicine-card">
+<!-- Section Header -->
+<div class="flex items-start space-x-3 mb-6">
+<span class="w-6 h-6 rounded-full bg-brand-50 text-brand-700 text-xs font-bold flex items-center justify-center border border-brand-100 flex-shrink-0 mt-0.5">1</span>
+<div>
+<h2 class="text-base font-bold text-slate-900 leading-tight">Medicine</h2>
+<p class="text-xs text-slate-500 mt-0.5">What are you taking?</p>
+</div>
+</div>
+<div class="space-y-5">
+<!-- Medicine Name Input -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="medicine-name">Medicine name</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition" id="medicine-name" type="text" value="Paracetamol"/>
+</div>
+<!-- Dosage Input -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="dosage">Dosage</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition" id="dosage" type="text" value="500mg"/>
+</div>
+<!-- Form Selection Chips -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-2">Form</label>
+<div class="flex flex-wrap gap-2 text-xs">
+<button class="px-4 py-1.5 rounded-full font-medium bg-brand-800 text-white shadow-sm transition" type="button">Tablet</button>
+<button class="px-4 py-1.5 rounded-full font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition" type="button">Capsule</button>
+<button class="px-4 py-1.5 rounded-full font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition" type="button">Syrup</button>
+<button class="px-4 py-1.5 rounded-full font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition" type="button">Other</button>
+</div>
+</div>
+<!-- Notes Textarea -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="notes">
+              Notes <span class="text-slate-400 font-normal">optional</span>
+</label>
+<textarea class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none resize-none transition" id="notes" rows="3">Take after meals</textarea>
+</div>
+</div>
+</section>
+<!-- END: Section 1 - Medicine Details -->
+<!-- BEGIN: Section 2 - Schedule -->
+<section class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm" data-purpose="schedule-card">
+<!-- Section Header -->
+<div class="flex items-start space-x-3 mb-6">
+<span class="w-6 h-6 rounded-full bg-brand-50 text-brand-700 text-xs font-bold flex items-center justify-center border border-brand-100 flex-shrink-0 mt-0.5">2</span>
+<div>
+<h2 class="text-base font-bold text-slate-900 leading-tight">Schedule</h2>
+<p class="text-xs text-slate-500 mt-0.5">When do you take it?</p>
+</div>
+</div>
+<div class="space-y-5">
+<!-- Frequency Selector -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-2">How often?</label>
+<div class="flex flex-wrap gap-2 text-xs">
+<button class="px-3.5 py-1.5 rounded-full font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition" type="button">Once a day</button>
+<button class="px-3.5 py-1.5 rounded-full font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition" type="button">Several times a day</button>
+<button class="px-3.5 py-1.5 rounded-full font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 transition" type="button">Specific days</button>
+<button class="px-3.5 py-1.5 rounded-full font-medium bg-brand-800 text-white shadow-sm transition" type="button">Every few hours</button>
+</div>
+</div>
+<!-- Repeat and First Dose Inputs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="repeat-every">Repeat every</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition" id="repeat-every" type="text" value="8 hours"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="first-dose">First dose at</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition" id="first-dose" type="text" value="5:00 AM"/>
+</div>
+</div>
+<!-- Dose Schedule Notification Banner -->
+<div class="flex items-center space-x-2 bg-emerald-50/80 border border-emerald-100 text-emerald-800 text-xs px-3.5 py-2.5 rounded-lg font-medium">
+<svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span>Doses each day: 5:00 AM · 1:00 PM · 9:00 PM</span>
+</div>
+<!-- Day Selection Chips -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-2">On which days?</label>
+<div class="flex flex-wrap gap-1.5">
+<button class="w-10 h-7 rounded-full text-xs font-medium bg-brand-800 text-white flex items-center justify-center shadow-sm" type="button">Mon</button>
+<button class="w-10 h-7 rounded-full text-xs font-medium bg-brand-800 text-white flex items-center justify-center shadow-sm" type="button">Tue</button>
+<button class="w-10 h-7 rounded-full text-xs font-medium bg-brand-800 text-white flex items-center justify-center shadow-sm" type="button">Wed</button>
+<button class="w-10 h-7 rounded-full text-xs font-medium bg-brand-800 text-white flex items-center justify-center shadow-sm" type="button">Thu</button>
+<button class="w-10 h-7 rounded-full text-xs font-medium bg-brand-800 text-white flex items-center justify-center shadow-sm" type="button">Fri</button>
+<button class="w-10 h-7 rounded-full text-xs font-medium bg-brand-800 text-white flex items-center justify-center shadow-sm" type="button">Sat</button>
+<button class="w-10 h-7 rounded-full text-xs font-medium bg-brand-800 text-white flex items-center justify-center shadow-sm" type="button">Sun</button>
+</div>
+</div>
+<!-- Date Range Inputs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="start-date">Start date</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition" id="start-date" type="text" value="Oct 12, 2026"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5" for="end-date">
+                End date <span class="text-slate-400 font-normal">optional</span>
+</label>
+<input class="w-full text-sm px-3.5 py-2.5 rounded-lg border border-slate-200 text-slate-900 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition" id="end-date" type="text" value="Oct 19, 2026"/>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Section 2 - Schedule -->
+<!-- BEGIN: Section 3 - Reminders -->
+<section class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm" data-purpose="reminders-card">
+<!-- Section Header -->
+<div class="flex items-start space-x-3 mb-6">
+<span class="w-6 h-6 rounded-full bg-brand-50 text-brand-700 text-xs font-bold flex items-center justify-center border border-brand-100 flex-shrink-0 mt-0.5">3</span>
+<div>
+<h2 class="text-base font-bold text-slate-900 leading-tight">Reminders</h2>
+<p class="text-xs text-slate-500 mt-0.5">How should we remind you?</p>
+</div>
+</div>
+<div class="divide-y divide-slate-100">
+<!-- Item 1: Browser Notification -->
+<div class="py-3 first:pt-0 flex items-center justify-between">
+<div>
+<h3 class="text-sm font-semibold text-slate-900">Browser notification</h3>
+<p class="text-xs text-slate-500 mt-0.5">A pop-up at each dose time</p>
+</div>
+<!-- Active Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+</label>
+</div>
+<!-- Item 2: Email Reminder -->
+<div class="py-3 flex items-center justify-between">
+<div>
+<h3 class="text-sm font-semibold text-slate-900">Email reminder</h3>
+<p class="text-xs text-slate-500 mt-0.5">Optional · sent to juan@email.com</p>
+</div>
+<!-- Inactive Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- END: Section 3 - Reminders -->
+<!-- BEGIN: Form Actions -->
+<div class="flex items-center justify-end space-x-3 pt-2" data-purpose="form-actions">
+<button class="px-5 py-2.5 rounded-lg text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-sm" type="button">
+          Cancel
+        </button>
+<button class="inline-flex items-center px-5 py-2.5 rounded-lg text-xs font-semibold text-white bg-brand-800 hover:bg-brand-900 transition shadow-sm" type="submit">
+<svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+          Save medicine
+        </button>
+</div>
+<!-- END: Form Actions -->
+</form>
+</main>
+<!-- END: MainContent -->
+</body></html>

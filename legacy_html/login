@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedTrack - Healthcare Management Portal</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font Setup: Inter font family for crisp SaaS UI -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#DC2626',
+              redHover: '#B91C1C',
+              lightRed: '#FEE2E2',
+              pillBg: '#FFF1F2',
+              pillBorder: '#FFE4E6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #F8FAFC;
+    }
+    .card-shadow {
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.05), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+    }
+  </style>
+</head>
+<body class="min-h-screen font-sans flex flex-col justify-between text-slate-800 antialiased selection:bg-red-100 selection:text-red-700">
+<!-- BEGIN: TopBar -->
+<header class="w-full pt-6 px-8 sm:px-12 flex items-center justify-between" data-purpose="system-status-header">
+<!-- Status indicator badge -->
+<div class="inline-flex items-center space-x-2 text-[13px] font-medium text-slate-600 tracking-normal">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100"></span>
+<span>System Operational &amp; HIPAA Compliant</span>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex items-center justify-center px-4 py-8" data-purpose="login-container">
+<div class="w-full max-w-[440px] bg-white rounded-2xl p-8 sm:p-10 card-shadow border border-slate-100/80">
+<!-- Logo and Brand Header -->
+<div class="flex items-center space-x-3.5 mb-3" data-purpose="brand-header">
+<div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-500 border border-red-100/60 shadow-xs">
+<!-- Capsule / Pill Icon -->
+<svg class="w-5 h-5 -rotate-45" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+<path d="m8.5 8.5 7 7"></path>
+</svg>
+</div>
+<div>
+<h1 class="text-xl font-bold text-slate-900 tracking-tight leading-tight">MedTrack</h1>
+<p class="text-xs text-slate-500 font-normal">Healthcare Management Portal</p>
+</div>
+</div>
+<!-- Welcome Description -->
+<p class="text-[14px] text-slate-500 font-normal mb-7">Log in to your medication profile</p>
+<!-- Login Form -->
+<form action="#" class="space-y-4" data-purpose="authentication-form" method="POST" onsubmit="event.preventDefault();">
+<!-- Email Input -->
+<div class="space-y-1.5">
+<label class="block text-[13px] font-semibold text-slate-700" for="email">Email</label>
+<input class="w-full px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 bg-slate-50/50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all duration-150" id="email" name="email" placeholder="name@email.com" required="" type="email"/>
+</div>
+<!-- Password Input -->
+<div class="space-y-1.5">
+<label class="block text-[13px] font-semibold text-slate-700" for="password">Password</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 bg-slate-50/50 border border-slate-200 rounded-lg pr-10 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all duration-150" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<!-- Visibility Toggle Button -->
+<button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none" id="toggle-password" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex justify-end pt-0.5">
+<a class="text-[13px] font-semibold text-brand-red hover:text-brand-redHover transition-colors" href="#">
+            Forgot password?
+          </a>
+</div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full bg-[#DC2626] hover:bg-[#B91C1C] text-white font-medium text-[15px] py-2.5 px-4 rounded-lg shadow-sm hover:shadow transition-all duration-150 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" type="submit">
+            Log in
+          </button>
+</div>
+</form>
+<!-- Sign Up Redirection -->
+<div class="mt-6 text-center text-[13px] text-slate-500 font-normal">
+        Don't have an account? 
+        <a class="font-semibold text-brand-red hover:text-brand-redHover transition-colors ml-1" href="#">
+          Sign up
+        </a>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: Footer -->
+<footer class="w-full pb-8 pt-4 px-4 flex flex-col items-center space-y-3" data-purpose="site-footer">
+<!-- Security and Compliance Pill -->
+<div class="inline-flex flex-wrap items-center justify-center gap-y-1 gap-x-2 text-[11px] sm:text-xs text-slate-500 bg-white/90 border border-slate-200/80 rounded-full px-4 py-1.5 shadow-2xs">
+<span class="inline-flex items-center text-slate-700 font-medium">
+<!-- Padlock / Security Link Icon -->
+<svg class="w-3.5 h-3.5 mr-1.5 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        End-to-End Encrypted Medication Profile
+      </span>
+<span class="text-slate-300">•</span>
+<a class="hover:text-slate-800 transition-colors" href="#">Privacy Policy</a>
+<span class="text-slate-300">•</span>
+<a class="hover:text-slate-800 transition-colors" href="#">Terms of Care</a>
+</div>
+<!-- Copyright Notice -->
+<p class="text-[11px] sm:text-[12px] text-slate-400 font-normal">
+      © 2025 MedTrack Healthcare Systems, Inc. All rights reserved.
+    </p>
+</footer>
+<!-- END: Footer -->
+<!-- BEGIN: Scripts -->
+<script data-purpose="password-visibility-toggle">
+    // Interactive toggler for password field viewing
+    const toggleButton = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    if (toggleButton && passwordInput) {
+      toggleButton.addEventListener('click', () => {
+        const isPassword = passwordInput.getAttribute('type') === 'password';
+        passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+        
+        // Minor visual feedback on icon color
+        toggleButton.classList.toggle('text-red-500', isPassword);
+        toggleButton.classList.toggle('text-slate-400', !isPassword);
+      });
+    }
+  </script>
+<!-- END: Scripts -->
+</body></html>

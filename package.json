@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "nodemailer": "^10.2.1",
+    "react-day-picker": "^10.0.2",
+    "react-hot-toast": "^2.6.1"
+  }
+}
